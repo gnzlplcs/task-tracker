@@ -1,9 +1,11 @@
 import React from 'react';
 
-export const Header = () => {
+const Header = ({ title }) => {
   return (
     <header>
-      <h1>Task Tracker</h1>
+      <h1>{title}</h1>
     </header>
   )
 }
+
+export { Header };
