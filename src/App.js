@@ -27,10 +27,13 @@ function App() {
     setTasks([...tasks, newTask])
   };
 
-  // delete function
-  const deleteTask = (id) => {
+  // delete task from server
+  const deleteTask = async (id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE'
+    })
     setTasks(tasks.filter((task) => task.id !== id));
-  };
+  }
 
   const toggleReminder = (id) => {
     setTasks(
