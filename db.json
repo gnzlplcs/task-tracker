@@ -1,3 +1,28 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "text": "planchar camisa",
+      "day": "tomorrow",
+      "reminder": false,
+      "id": 1
+    },
+    {
+      "text": "sacar la basura",
+      "day": "today",
+      "reminder": false,
+      "id": 2
+    },
+    {
+      "text": "sample",
+      "day": "today",
+      "reminder": false,
+      "id": 3
+    },
+    {
+      "text": "sample 2",
+      "day": "tomorrow",
+      "reminder": false,
+      "id": 4
+    }
+  ]
 }
