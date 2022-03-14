@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
@@ -6,6 +6,20 @@ import AddTask from "./components/AddTask";
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks();
+      setTasks(tasksFromServer);
+    }
+    getTasks()
+  }, []);
+
+  const fetchTasks = async () => {
+    const response = await fetch('http://localhost:5000/tasks');
+    const data = await response.json();
+    return data;
+  }
 
   const addTask = (task) => {
     const id = Math.floor(Math.random() * 1000) + 1;
