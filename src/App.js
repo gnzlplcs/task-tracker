@@ -4,47 +4,55 @@ import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
 function App() {
-  const [ tasks, setTasks ] = useState([
+  const [tasks, setTasks] = useState([
     {
       id: 1,
-      text: 'Sacar a Wanda',
-      day: 'Mar 15th at 9.00pm',
-      reminder: true
+      text: "Sacar a Wanda",
+      day: "Mar 15th at 9.00pm",
+      reminder: true,
     },
     {
       id: 2,
-      text: 'Lavar los platos',
-      day: 'Mar 15th at 9.00pm',
-      reminder: true
+      text: "Lavar los platos",
+      day: "Mar 15th at 9.00pm",
+      reminder: true,
     },
     {
       id: 3,
-      text: 'Comprar alimentos',
-      day: 'Mar 15th at 9.00pm',
-      reminder: true
-    }
+      text: "Comprar alimentos",
+      day: "Mar 15th at 9.00pm",
+      reminder: true,
+    },
   ]);
 
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 1000) + 1;
+    const newTask = { id, ...task};
+    setTasks([...tasks, newTask])
+  };
+
   // delete function
-  const deleteTask = id => {
-    setTasks(tasks.filter((task) => task.id !== id))
-  }
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
 
   const toggleReminder = (id) => {
-    setTasks(tasks.map((task) => (
-      task.id === id ? {...task, reminder: !task.reminder } : task
-    )))
-  }
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      )
+    );
+  };
 
   return (
     <div className="container">
       <Header />
-      <AddTask />
-      {tasks.length > 0 ? <Tasks
-        tasks={tasks}
-        onDelete={deleteTask}
-        onToggle={toggleReminder}
-      /> : 'No Tasks To Show'}
+      <AddTask onAdd={addTask} />
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
+      ) : (
+        "No Tasks To Show"
+      )}
     </div>
   );
 }
